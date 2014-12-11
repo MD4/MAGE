@@ -15,3 +15,7 @@ Todo :
 ----
 
  - Mouse handler
+ - Examples
+ - Documentation
+ - Coffee
+ - More coffee
