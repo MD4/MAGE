@@ -3,9 +3,14 @@
 <head>
     <title>MAGE - MinimAlist Game Engine</title>
 
+    <!-- VENDOR -->
     <script src="js/vendor/jquery.js"></script>
+    <!-- LIBS -->
+    <script src="js/lib/MATH/Math.js"></script>
+    <!-- MAGE -->
     <script src="js/class/Game.class.js"></script>
     <script src="js/class/Sprite.class.js"></script>
+    <!-- GAME -->
     <script src="js/class/Bullet.class.js"></script>
     <script src="js/class/Player.class.js"></script>
     <script src="js/class/GameTest.class.js"></script>
@@ -29,14 +34,16 @@
 <script>
     function startGame() {
         var myGame = new GameTest(document.getElementById("a"), {
-            debugMode: true
+            debugMode: true,
+            clearColor: "white",
+            debugColor: "gray"
         });
         myGame.start();
     }
 
-    $(function(){
-        $('#bob').one('load', function() {
-            $('#legs').one('load', function() {
+    $(function () {
+        $('#bob').one('load', function () {
+            $('#legs').one('load', function () {
                 startGame();
             });
         });

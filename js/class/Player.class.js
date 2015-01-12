@@ -18,6 +18,7 @@
         this.speed = 0;
         this.torque = 0;
         this.angle = 0;
+        this.destAngle = this.angle;
         this.scale = 1.75;
         this.bullets = [];
     };
@@ -75,6 +76,8 @@
         for(var i = 0; i < this.bullets.length; i++) {
             this.bullets[i].update(delta);
         }
+
+        this.angle = Math.lerpAngle(this.angle, this.destAngle, 10.0);
     };
 
     Player.prototype.draw = function (context) {
@@ -92,20 +95,14 @@
         for(var i = 0; i < this.bullets.length; i++) {
             this.bullets[i].draw(context);
         }
-
-
-        return;
-        context.beginPath();
-        context.arc(this.position.x, this.position.y, this.size, 0, Math.PI2);
-        context.moveTo(this.position.x + Math.cos(this.angle) * this.size, this.position.y + Math.sin(this.angle) * this.size);
-        context.lineTo(this.position.x, this.position.y);
-        context.stroke();
-
-
     };
 
     Player.prototype.fire = function() {
         this.bullets.push(new Bullet(this.position.x, this.position.y, this.angle, 20));
+    };
+
+    Player.prototype.setAngle = function(angle) {
+        this.destAngle = angle;
     };
 
     global.Player = Player;
