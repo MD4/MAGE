@@ -1,0 +1,28 @@
+{
+  "name": "MAGE",
+  "version": "0.0.1",
+  "homepage": "https://github.com/MD4/MAGE",
+  "authors": [
+    "MD4 <m.dequa@gmail.com>"
+  ],
+  "description": "MinimAlist Game Engine",
+  "keywords": [
+    "minimalist",
+    "game",
+    "engine",
+    "zukini"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "js/lib",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "MATH": "MD4/MATH",
+    "jquery": "~2.1.3"
+  }
+}
