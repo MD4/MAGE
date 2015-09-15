@@ -3,9 +3,9 @@
 <head>
     <title>MAGE - MinimAlist Game Engine</title>
 
-    <script src="dist/MAGE.min.js"></script>
+    <script src="dist/MAGE.js"></script>
 
-    <script src="example/GameTest.class.js"></script>
+    <script src="example/GameTest.js"></script>
 
     <style>
         #a {
@@ -23,11 +23,14 @@
 </canvas>
 <script>
     function startGame() {
-        var myGame = new GameTest(document.getElementById("a"), {
-            debugMode: true,
-            clearColor: "#666",
-            debugColor: "#fff"
-        });
+        var myGame = new GameTest(
+                document.getElementById("a"),
+                {
+                    debugMode: true,
+                    clearColor: "#666",
+                    debugColor: "#fff"
+                }
+        );
         myGame.start();
     }
 

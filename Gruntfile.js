@@ -4,12 +4,18 @@ module.exports = function(grunt) {
         jshint: {
             files: ['Gruntfile.js', 'src/**/*.js']
         },
+        clean: [
+            "dist"
+        ],
         concat: {
             options: {
                 separator: '\n\n'
             },
             dist: {
-                src: ['src/**/*.js'],
+                src: [
+                    'lib/Class/Class.js',
+                    'src/**/*.js'
+                ],
                 dest: 'dist/MAGE.js'
             }
         },
@@ -28,11 +34,13 @@ module.exports = function(grunt) {
     });
 
     grunt.loadNpmTasks('grunt-contrib-jshint');
+    grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-uglify');
 
     grunt.registerTask('default', [
         'jshint',
+        'clean',
         'concat',
         'uglify'
     ]);
