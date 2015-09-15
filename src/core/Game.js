@@ -1,5 +1,5 @@
 window.requestAnimFrame = (function () {
-    return  window.requestAnimationFrame ||
+    return window.requestAnimationFrame ||
         window.webkitRequestAnimationFrame ||
         window.mozRequestAnimationFrame ||
         function (callback) {
@@ -31,15 +31,18 @@ window.requestAnimFrame = (function () {
         this.buttonStates = {};
         this.oldButtonStates = {};
         this.mousePosition = {x: 0, y: 0};
-        this.containerPosition = $(container).offset();
+        this.containerPosition = {
+            x: container.offsetLeft,
+            y: container.offsetTop
+        };
         this.debugIndicators = [];
     };
 
     Game.prototype.initializeAll = function () {
         if (this.allowResize) {
-            $(window).resize(function () {
+            window.onresize = function () {
                 this.initContext();
-            }.bind(this));
+            }.bind(this);
         }
 
         this.initContext();
@@ -49,8 +52,8 @@ window.requestAnimFrame = (function () {
     };
 
     Game.prototype.initContext = function () {
-        this.width = $(this.container).width();
-        this.height = $(this.container).height();
+        this.width = this.container.offsetWidth;
+        this.height = this.container.offsetHeight;
 
         this.container.setAttribute('width', this.width);
         this.container.setAttribute('height', this.height);
@@ -61,20 +64,17 @@ window.requestAnimFrame = (function () {
     Game.prototype.start = function () {
         this.initializeAll();
         requestAnimFrame(this.loop.bind(this));
-    }
+    };
 
     Game.prototype.initialize = function () {
-        // Let it empty here
         // Extend class and implement it
     };
 
     Game.prototype.update = function (time, delta) {
-        // Let it empty here
         // Extend class and implement it
     };
 
     Game.prototype.draw = function (context, time, elapsedTime, delta) {
-        // Let it empty here
         // Extend class and implement it
     };
 
@@ -86,6 +86,7 @@ window.requestAnimFrame = (function () {
     Game.prototype.drawDebugMode = function (context, time, elapsedTime, delta) {
         var y = 1;
 
+        context.font = '10px sans';
         context.fillStyle = this.debugColor;
         context.fillText("Time : " + time.toFixed(2), 10, 10 * y++);
         context.fillText("Elapsed time : " + elapsedTime.toFixed(2), 10, 10 * y++);
@@ -93,7 +94,7 @@ window.requestAnimFrame = (function () {
         context.fillText("Tmr FPS : " + this.tmrFPS.toFixed(2), 10, 10 * y++);
         context.fillText("FPS : " + this.FPS, 10, 10 * y++);
         y++;
-        $(this.debugIndicators).each(function(i, indicator){
+        this.debugIndicators.forEach(function (i, indicator) {
             context.fillText(indicator.title + " : " + indicator.fn(), 10, 10 * y++);
         });
     };
@@ -174,20 +175,20 @@ window.requestAnimFrame = (function () {
         return (!this.isButtonDown(button) && !!this.oldButtonStates[button]);
     };
 
-    Game.prototype.getMousePosition = function() {
-      return this.mousePosition;
+    Game.prototype.getMousePosition = function () {
+        return this.mousePosition;
     };
 
     Game.prototype.clone = function (object) {
         return JSON.parse(JSON.stringify(object));
     };
 
-    Game.prototype.debug = function(title, fn) {
+    Game.prototype.debug = function (title, fn) {
         this.debugIndicators.push({
             title: title,
             fn: fn
         });
-    }
+    };
 
-    global.Game = Game;
+    global.MAGE.core.Game = Game;
 }(window));

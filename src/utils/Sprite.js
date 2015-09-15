@@ -26,21 +26,30 @@
     };
 
     Sprite.prototype.getCurrentTileRect = function () {
-        var currentTileRect = {
+        return {
             x: Math.floor(this.current % this.colCount) * this.tileSize.width,
             y: Math.floor(this.current / this.colCount) * this.tileSize.height,
             width: this.tileSize.width,
             height: this.tileSize.height
         };
-        return currentTileRect;
     };
 
     Sprite.prototype.draw = function (context, x, y, width, height, scale) {
         var currentTileRect = this.getCurrentTileRect();
         width = width || this.tileSize.width;
         height = height || this.tileSize.height;
-        context.drawImage(this.img, currentTileRect.x, currentTileRect.y, currentTileRect.width, currentTileRect.height, (x - width / 2) * scale, (y - height / 2) * scale, width * scale, height * scale);
+        context.drawImage(
+            this.img,
+            currentTileRect.x,
+            currentTileRect.y,
+            currentTileRect.width,
+            currentTileRect.height,
+            (x - width / 2) * scale,
+            (y - height / 2) * scale,
+            width * scale,
+            height * scale
+        );
     };
 
-    global.Sprite = Sprite;
+    global.MAGE.utils.Sprite = Sprite;
 }(window));

@@ -3,23 +3,15 @@
 <head>
     <title>MAGE - MinimAlist Game Engine</title>
 
-    <!-- VENDOR -->
-    <script src="js/lib/jquery/dist/jquery.min.js"></script>
-    <!-- LIBS -->
-    <script src="js/lib/MATH/Math.js"></script>
-    <!-- MAGE -->
-    <script src="js/class/Game.class.js"></script>
-    <script src="js/class/Sprite.class.js"></script>
-    <!-- GAME -->
-    <script src="js/class/Bullet.class.js"></script>
-    <script src="js/class/Player.class.js"></script>
-    <script src="js/class/GameTest.class.js"></script>
+    <script src="dist/MAGE.min.js"></script>
+
+    <script src="example/GameTest.class.js"></script>
 
     <style>
         #a {
             position: absolute;
-            left: 0px;
-            top: 0px;
+            left: 0;
+            top: 0;
             width: 100%;
             height: 100%;
         }
@@ -29,25 +21,17 @@
 <canvas id="a">
     This text is displayed if your browser does not support HTML5 Canvas.
 </canvas>
-<img id="bob" style="display: none;" src="gfx/bob2.png"/>
-<img id="legs" style="display: none;" src="gfx/legs.png"/>
 <script>
     function startGame() {
         var myGame = new GameTest(document.getElementById("a"), {
             debugMode: true,
-            clearColor: "white",
-            debugColor: "gray"
+            clearColor: "#666",
+            debugColor: "#fff"
         });
         myGame.start();
     }
 
-    $(function () {
-        $('#bob').one('load', function () {
-            $('#legs').one('load', function () {
-                startGame();
-            });
-        });
-    });
+    startGame();
 </script>
 </body>
 </html>
