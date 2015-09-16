@@ -97,8 +97,8 @@ window.requestAnimFrame = (function () {
             context.fillText("Tmr FPS : " + this.tmrFPS.toFixed(2), 10, 10 * y++);
             context.fillText("FPS : " + this.FPS, 10, 10 * y++);
             y++;
-            this.debugIndicators.forEach(function (i, indicator) {
-                context.fillText(indicator.title + " : " + indicator.fn(), 10, 10 * y++);
+            this.debugIndicators.forEach(function (indicator) {
+                context.fillText(indicator.title + " : " + JSON.stringify(indicator.fn()), 10, 10 * y++);
             });
         },
 
@@ -148,8 +148,8 @@ window.requestAnimFrame = (function () {
             }.bind(this);
             this.eventsContainer.onmousemove = function (e) {
                 this.mousePosition = {
-                    x: e.clientX - this.containerPosition.top,
-                    y: e.clientY - this.containerPosition.left
+                    x: e.offsetX - this.eventsContainer.offsetLeft,
+                    y: e.offsetY - this.eventsContainer.offsetTop
                 };
             }.bind(this);
         },
