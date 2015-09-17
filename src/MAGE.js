@@ -1,6 +1,6 @@
 (function (global) {
     global.MAGE = {
-        version: '0.0.3',
+        version: '0.0.4',
         core: {},
         utils: {}
     };

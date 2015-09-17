@@ -9,6 +9,12 @@
         },
 
         update: function (time, delta) {
+            if (this.isJustButtonUp(0)) {
+                this.stop();
+                setTimeout(function() {
+                    this.start();
+                }.bind(this), 1000);
+            }
         },
 
         draw: function (context, time, elapsedTime, delta) {

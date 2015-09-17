@@ -34,6 +34,7 @@ window.requestAnimFrame = (function () {
             this.buttonStates = {};
             this.oldButtonStates = {};
             this.mousePosition = {x: 0, y: 0};
+            this.running = false;
             this.containerPosition = {
                 x: container.offsetLeft,
                 y: container.offsetTop
@@ -65,8 +66,16 @@ window.requestAnimFrame = (function () {
         },
 
         start: function () {
+            if (this.running) {
+                return;
+            }
             this.initializeAll();
+            this.running = true;
             requestAnimFrame(this.loop.bind(this));
+        },
+
+        stop: function() {
+            this.running = false;
         },
 
         initialize: function () {
@@ -122,7 +131,10 @@ window.requestAnimFrame = (function () {
             this.lastRender = time;
             this.oldKeyStates = this.clone(this.keyStates);
             this.oldButtonStates = this.clone(this.buttonStates);
-            requestAnimFrame(this.loop.bind(this));
+
+            if (this.running ) {
+                requestAnimFrame(this.loop.bind(this));
+            }
         },
 
         initListeners: function () {
